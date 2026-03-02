@@ -33,6 +33,7 @@
         <fmk-memory.version>20251117_v1</fmk-memory.version>
         <fmk-message.version>20251117_v1</fmk-message.version>
         <fmk-web.version>20251117_v1</fmk-web.version>
+        <fmk-tg.version>20251117_v1</fmk-tg.version>
 
         <!-- 修改这些版本 -->
         <spring-boot.version>3.5.8</spring-boot.version>
