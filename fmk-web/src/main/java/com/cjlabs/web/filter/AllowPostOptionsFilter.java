@@ -12,8 +12,8 @@ import java.util.Set;
 public class AllowPostOptionsFilter extends OncePerRequestFilter {
 
     // 允许的方法集合
-    private static final Set<String> ALLOWED_METHODS = Set.of("POST", "OPTIONS");
-    // GET / PUT / DELETE / PATCH / HEAD 等都会返回 405
+    // 因为 ws 
+    private static final Set<String> ALLOWED_METHODS = Set.of("POST", "OPTIONS", "GET");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -29,7 +29,7 @@ public class AllowPostOptionsFilter extends OncePerRequestFilter {
             return;
         }
 
-        // POST 或 OPTIONS 放行
+        // POST、OPTIONS 或 GET 放行
         filterChain.doFilter(request, response);
     }
 }
