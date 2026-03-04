@@ -29,7 +29,8 @@ public class FmkWebMvcConfiguration implements WebMvcConfigurer {
             "/error",
             "/actuator/**",
             "/swagger-ui/**",
-            "/v3/api-docs/**"
+            "/v3/api-docs/**",
+            "/ws/**"
     );
 
     @Override

@@ -70,6 +70,7 @@ public class FmkContextInterceptor implements HandlerInterceptor {
         if (RequestMethod.OPTIONS.name().equalsIgnoreCase(request.getMethod())) {
             return true;
         }
+        log.info("FmkContextInterceptor|preHandle|request.getMethod()={}", request.getMethod());
 
         try {
             // 获取由TraceFilter创建的上下文信息
