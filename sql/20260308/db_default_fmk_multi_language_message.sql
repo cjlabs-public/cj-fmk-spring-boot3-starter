@@ -1,7 +1,5 @@
 
 
-use remote_local;
-
 INSERT INTO fmk_multi_language_message (id, message_type, message_key, language_code, message_value, del_flag, create_user, create_date, update_user, update_date, trace_id) VALUES (1, 'ERROR_400', 'UNAUTHORIZED', 'ZH_CN', '未授权，请登录。', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_182097773645004800');
 INSERT INTO fmk_multi_language_message (id, message_type, message_key, language_code, message_value, del_flag, create_user, create_date, update_user, update_date, trace_id) VALUES (2, 'ERROR_400', 'UNAUTHORIZED', 'ZH_TW', '未授權，請登入。', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_182097773645004800');
 INSERT INTO fmk_multi_language_message (id, message_type, message_key, language_code, message_value, del_flag, create_user, create_date, update_user, update_date, trace_id) VALUES (3, 'ERROR_400', 'UNAUTHORIZED', 'EN_US', 'Unauthorized, please log in.', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_182097773645004800');

@@ -1,33 +1,32 @@
+create database if not exists local_baby;
 
-use remote_local;
+use local_baby;
 
 
 -- auto-generated definition
 create table fmk_language
 (
-    id            bigint auto_increment comment '主键ID'
+    id          bigint auto_increment comment '主键ID'
         primary key,
-    code          varchar(20)                                  not null comment '语言代码（格式：xx_XX，如 zh_CN, en_US）',
-    name_zh       varchar(100)                                 not null comment '中文名称',
-    name_en       varchar(100)                                 not null comment '英文名称',
-    region        varchar(50)                                  not null comment '语言区域分类（中文系、英语系、东亚、东南亚、南亚、中东、欧洲等）',
-    sort_order    int                         default 0        null comment '排序号',
-    status        enum ('NORMAL', 'ABNORMAL') default 'NORMAL' not null comment '状态：NORMAL 启用，ABNORMAL 禁用',
-    remark        varchar(255)                                 null comment '备注说明',
-    del_flag      enum ('NORMAL', 'ABNORMAL') default 'NORMAL' not null comment '删除标志',
-    create_user   varchar(50)                                  not null comment '创建用户',
-    create_date   bigint                                       not null comment '创建时间（UTC毫秒）',
-    update_user   varchar(50)                                  null comment '更新用户',
-    update_date   bigint                                       not null comment '更新时间（UTC毫秒）',
-    trace_id      varchar(64)                 default ''       not null comment '追踪ID',
+    code        varchar(20)                                  not null comment '语言代码（格式：xx_XX，如 zh_CN, en_US）',
+    name        varchar(100)                                 not null comment '名称',
+    sort_order  int                         default 0        not null comment '排序号',
+    status      enum ('NORMAL', 'ABNORMAL') default 'NORMAL' not null comment '状态：NORMAL 启用，ABNORMAL 禁用',
+    remark      varchar(255)                                 null comment '备注说明',
+    del_flag    enum ('NORMAL', 'ABNORMAL') default 'NORMAL' not null comment '删除标志',
+    create_user varchar(50)                                  not null comment '创建用户',
+    create_date bigint                                       not null comment '创建时间（UTC毫秒）',
+    update_user varchar(50)                                  null comment '更新用户',
+    update_date bigint                                       not null comment '更新时间（UTC毫秒）',
+    trace_id    varchar(64)                 default ''       not null comment '追踪ID',
     constraint uk_language_code
         unique (code),
-    index idx_region (region),
     index idx_status (status),
     index idx_del_flag (del_flag),
     index idx_create_date (create_date)
 )
-    comment '系统支持的语言配置表' charset utf8mb4 collate utf8mb4_unicode_ci;
+    comment '系统支持的语言配置表' charset utf8mb4
+                                   collate utf8mb4_unicode_ci;
 
 -- auto-generated definition
 create table fmk_dict
@@ -36,7 +35,7 @@ create table fmk_dict
         primary key,
     dict_type   varchar(100)                                 not null comment '字典类型，例如 gender, currency, country',
     dict_key    varchar(100)                                 not null comment '字典键，用于逻辑标识，如 MALE, USD',
-    sort_order  int                         default 0        null comment '排序号',
+    sort_order  int                         default 0        not null comment '排序号',
     status      enum ('NORMAL', 'ABNORMAL') default 'NORMAL' not null comment '状态：NORMAL 启用，ABNORMAL 禁用',
     remark      varchar(255)                                 null comment '备注说明',
     del_flag    enum ('NORMAL', 'ABNORMAL') default 'NORMAL' not null comment '删除标志',
@@ -53,7 +52,8 @@ create table fmk_dict
     index idx_create_date (create_date),
     index idx_update_date (update_date)
 )
-    comment '系统字典主表' charset utf8mb4 collate utf8mb4_unicode_ci;
+    comment '系统字典主表' charset utf8mb4
+                           collate utf8mb4_unicode_ci;
 
 
 -- auto-generated definition
@@ -79,7 +79,8 @@ create table fmk_dict_i18n
     index idx_del_flag (del_flag),
     index idx_create_date (create_date)
 )
-    comment '系统字典多语言表' charset utf8mb4 collate utf8mb4_unicode_ci;
+    comment '系统字典多语言表' charset utf8mb4
+                               collate utf8mb4_unicode_ci;
 
 
 -- auto-generated definition
@@ -106,6 +107,7 @@ create table fmk_multi_language_message
     index idx_create_date (create_date),
     index idx_message_type_key (message_type, message_key)
 )
-    comment 'System message content table; 系统消息内容表' charset utf8mb4 collate utf8mb4_unicode_ci;
+    comment 'System message content table; 系统消息内容表' charset utf8mb4
+                                                           collate utf8mb4_unicode_ci;
 
 
