@@ -4,11 +4,6 @@ import com.cjlabs.core.types.base.BaseStringType;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.regex.Pattern;
-
 /**
  * 订单ID类型安全包装类
  */

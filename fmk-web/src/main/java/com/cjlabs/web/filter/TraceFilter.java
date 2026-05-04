@@ -1,5 +1,6 @@
 package com.cjlabs.web.filter;
 
+import com.cjlabs.core.time.FmkInstantUtil;
 import com.cjlabs.core.types.strings.FmkSpanId;
 import com.cjlabs.core.types.strings.FmkTraceId;
 import com.cjlabs.domain.common.FmkConstant;
@@ -15,7 +16,6 @@ import org.slf4j.MDC;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 /**
  * 链路追踪过滤器
@@ -53,7 +53,7 @@ public class TraceFilter extends OncePerRequestFilter {
             FmkContextInfo contextInfo = new FmkContextInfo();
             contextInfo.setTraceId(traceId);
             contextInfo.setSpanId(spanId);
-            contextInfo.setRequestTime(LocalDateTime.now());
+            contextInfo.setRequestTime(FmkInstantUtil.now());
             contextInfo.setRequestUri(request.getRequestURI());
 
             // 设置到 ThreadLocal

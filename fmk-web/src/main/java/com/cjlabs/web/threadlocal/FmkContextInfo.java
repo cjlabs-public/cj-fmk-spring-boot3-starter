@@ -1,5 +1,6 @@
 package com.cjlabs.web.threadlocal;
 
+import com.cjlabs.core.time.FmkInstantUtil;
 import com.cjlabs.core.types.longs.FmkUserId;
 import com.cjlabs.core.types.strings.FmkSpanId;
 import com.cjlabs.core.types.strings.FmkToken;
@@ -10,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -50,7 +51,7 @@ public class FmkContextInfo {
     /**
      * 请求时间
      */
-    private LocalDateTime requestTime;
+    private Instant requestTime;
 
     /**
      * 请求URI
@@ -79,7 +80,7 @@ public class FmkContextInfo {
     public static FmkContextInfo createBasic(FmkTraceId traceId, String requestUri) {
         FmkContextInfo info = new FmkContextInfo();
         info.traceId = traceId;
-        info.requestTime = LocalDateTime.now();
+        info.requestTime = FmkInstantUtil.now();
         info.requestUri = requestUri;
         return info;
     }
