@@ -1,6 +1,6 @@
-create database if not exists local_baby;
+create database if not exists jzbot;
 
-use local_baby;
+use jzbot;
 
 
 -- auto-generated definition
@@ -27,6 +27,27 @@ create table fmk_language
 )
     comment '系统支持的语言配置表' charset utf8mb4
                                    collate utf8mb4_unicode_ci;
+
+CREATE TABLE fmk_timezone
+(
+    id          BIGINT PRIMARY KEY AUTO_INCREMENT,
+    code        VARCHAR(64)                                  NOT NULL COMMENT 'IANA时区编码',
+    name        VARCHAR(128)                                 NOT NULL COMMENT '时区名称',
+    utc_offset  VARCHAR(16)                                  NOT NULL COMMENT 'UTC偏移',
+    sort_order  INT                                          NOT NULL DEFAULT 0,
+    status      enum ('NORMAL', 'ABNORMAL') default 'NORMAL' NOT NULL DEFAULT 'NORMAL',
+    del_flag    enum ('NORMAL', 'ABNORMAL') default 'NORMAL' not null comment '删除标志',
+    create_user varchar(50)                                  not null comment '创建用户',
+    create_date bigint                                       not null comment '创建时间（UTC毫秒）',
+    update_user varchar(50)                                  null comment '更新用户',
+    update_date bigint                                       not null comment '更新时间（UTC毫秒）',
+    trace_id    varchar(64)                 default ''       not null comment '追踪ID',
+    UNIQUE KEY uk_timezone_code (code),
+    index idx_status (status),
+    index idx_del_flag (del_flag),
+    index idx_create_date (create_date)
+) COMMENT ='时区表';
+
 
 -- auto-generated definition
 create table fmk_dict
