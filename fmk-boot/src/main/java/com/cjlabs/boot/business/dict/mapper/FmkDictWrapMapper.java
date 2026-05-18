@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public class FmkDictWrapMapper extends FmkService<FmkDictMapper, FmkDict> {
 
         // 构建查询条件
         LambdaQueryWrapper<FmkDict> lambdaQuery = buildLambdaQuery();
-
+        buildQueryCondition(lambdaQuery, request);
 
         List<FmkOrderItem> orderItemList = input.getOrderItemList();
 
@@ -58,5 +59,32 @@ public class FmkDictWrapMapper extends FmkService<FmkDictMapper, FmkDict> {
         IPage<FmkDict> dbPage = super.pageByCondition(page, lambdaQuery, orderItemList);
 
         return FmkPageResponse.of(dbPage);
+    }
+
+    /**
+     * 查询所有（不分页）
+     */
+    public List<FmkDict> listAll(FmkDictReqQuery input) {
+        FmkCheckUtil.checkInput(Objects.isNull(input));
+
+        LambdaQueryWrapper<FmkDict> lambdaQuery = buildLambdaQuery();
+        buildQueryCondition(lambdaQuery, input);
+        lambdaQuery.orderByAsc(FmkDict::getSortOrder);
+        lambdaQuery.orderByAsc(FmkDict::getId);
+
+        return super.listByCondition(lambdaQuery);
+    }
+
+    private void buildQueryCondition(LambdaQueryWrapper<FmkDict> lambdaQuery, FmkDictReqQuery request) {
+        if (StringUtils.isNotBlank(request.getDictType())) {
+            lambdaQuery.eq(FmkDict::getDictType, request.getDictType());
+        }
+        if (StringUtils.isNotBlank(request.getDictKey())) {
+            lambdaQuery.eq(FmkDict::getDictKey, request.getDictKey());
+        }
+        if (Objects.nonNull(request.getStatus())) {
+            lambdaQuery.eq(FmkDict::getStatus, request.getStatus());
+        }
+
     }
 }

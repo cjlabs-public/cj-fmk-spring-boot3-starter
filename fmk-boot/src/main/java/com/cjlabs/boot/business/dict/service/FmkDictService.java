@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -90,6 +91,20 @@ public class FmkDictService {
         FmkPageResponse<FmkDictResp> pageResponse = FmkPageResponse.of(entityPage, FmkDictConvert::toResp);
 
         return pageResponse;
+    }
+
+    /**
+     * 查询所有（不分页）
+     */
+    public List<FmkDictResp> listAll(FmkRequest<FmkDictReqQuery> input) {
+        // 参数校验
+        FmkCheckUtil.checkInput(Objects.isNull(input));
+        FmkCheckUtil.checkInput(Objects.isNull(input.getRequest()));
+
+        FmkDictReqQuery request = input.getRequest();
+
+        List<FmkDict> entityList = fmkDictWrapMapper.listAll(request);
+        return FmkDictConvert.toResp(entityList);
     }
 
 }

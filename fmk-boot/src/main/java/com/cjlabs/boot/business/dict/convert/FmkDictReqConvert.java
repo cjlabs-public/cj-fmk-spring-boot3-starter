@@ -17,6 +17,8 @@ public class FmkDictReqConvert {
 
         fmkDict.setId(input.getId());
         fmkDict.setDictType(input.getDictType());
+        fmkDict.setDictKey(input.getDictKey());
+        fmkDict.setSortOrder(input.getSortOrder());
         fmkDict.setStatus(input.getStatus());
         fmkDict.setRemark(input.getRemark());
 
@@ -31,6 +33,8 @@ public class FmkDictReqConvert {
 
         fmkDict.setId(input.getId());
         fmkDict.setDictType(input.getDictType());
+        fmkDict.setDictKey(input.getDictKey());
+        fmkDict.setSortOrder(input.getSortOrder());
         fmkDict.setStatus(input.getStatus());
         fmkDict.setRemark(input.getRemark());
 
@@ -45,6 +49,8 @@ public class FmkDictReqConvert {
 
         // fmkDict.setId(input.getId());
         fmkDict.setDictType(input.getDictType());
+        fmkDict.setDictKey(input.getDictKey());
+        fmkDict.setSortOrder(input.getSortOrder());
         fmkDict.setStatus(input.getStatus());
         fmkDict.setRemark(input.getRemark());
 

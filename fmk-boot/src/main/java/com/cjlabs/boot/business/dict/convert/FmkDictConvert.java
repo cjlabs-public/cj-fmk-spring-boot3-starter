@@ -20,6 +20,8 @@ public class FmkDictConvert {
 
         fmkDictResp.setId(input.getId());
         fmkDictResp.setDictType(input.getDictType());
+        fmkDictResp.setDictKey(input.getDictKey());
+        fmkDictResp.setSortOrder(input.getSortOrder());
         fmkDictResp.setStatus(input.getStatus());
         fmkDictResp.setRemark(input.getRemark());
         fmkDictResp.setCreateUser(input.getCreateUser());

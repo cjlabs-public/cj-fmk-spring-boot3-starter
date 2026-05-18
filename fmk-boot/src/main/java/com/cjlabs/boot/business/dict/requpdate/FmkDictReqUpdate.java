@@ -24,6 +24,16 @@ public class FmkDictReqUpdate {
     private String dictType;
 
     /**
+     * 字典键，用于逻辑标识，如 MALE, USD
+     */
+    private String dictKey;
+
+    /**
+     * 排序号
+     */
+    private Integer sortOrder;
+
+    /**
      * 状态：NORMAL 启用，ABNORMAL 禁用
      */
     private NormalEnum status;
