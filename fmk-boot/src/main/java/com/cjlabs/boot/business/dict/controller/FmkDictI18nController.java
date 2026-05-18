@@ -40,6 +40,15 @@ public class FmkDictI18nController {
     }
 
     /**
+     * 按字典类型和语言查询副表（不分页）
+     */
+    @PostMapping("/list/byLanguage")
+    public FmkResult<List<FmkDictI18nResp>> listByDictTypeAndLanguageCode(@RequestBody FmkRequest<FmkDictI18nReqQuery> input) {
+        List<FmkDictI18nResp> list = fmkDictI18nApiService.listByDictTypeAndLanguageCode(input);
+        return FmkResult.success(list);
+    }
+
+    /**
      * 新增
      */
     @PostMapping("/save")

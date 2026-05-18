@@ -13,6 +13,7 @@ import com.cjlabs.web.check.FmkCheckUtil;
 import com.cjlabs.domain.exception.Error200ExceptionEnum;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +65,21 @@ public class FmkDictI18nService {
         FmkCheckUtil.checkInput(Objects.isNull(input.getRequest()));
 
         List<FmkDictI18n> fmkDictI18nList = fmkDictI18nWrapMapper.listByDictType(input.getRequest());
+        return FmkDictI18nConvert.toResp(fmkDictI18nList);
+    }
+
+    /**
+     * 按字典类型和语言查询副表（不分页）
+     */
+    public List<FmkDictI18nResp> listByDictTypeAndLanguageCode(FmkRequest<FmkDictI18nReqQuery> input) {
+        FmkCheckUtil.checkInput(Objects.isNull(input));
+        FmkCheckUtil.checkInput(Objects.isNull(input.getRequest()));
+
+        FmkDictI18nReqQuery request = input.getRequest();
+        FmkCheckUtil.checkInput(StringUtils.isBlank(request.getDictType()));
+        FmkCheckUtil.checkInput(Objects.isNull(request.getLanguageCode()));
+
+        List<FmkDictI18n> fmkDictI18nList = fmkDictI18nWrapMapper.listByDictTypeAndLanguageCode(request);
         return FmkDictI18nConvert.toResp(fmkDictI18nList);
     }
 }

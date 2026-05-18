@@ -17,6 +17,8 @@ public class FmkDictI18nReqConvert {
 
         fmkDictI18n.setDictType(input.getDictType());
         fmkDictI18n.setDictKey(input.getDictKey());
+        fmkDictI18n.setLanguageCode(input.getLanguageCode());
+        fmkDictI18n.setOrderNumber(input.getOrderNumber());
 
         return fmkDictI18n;
     }

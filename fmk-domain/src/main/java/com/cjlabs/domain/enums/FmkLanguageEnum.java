@@ -6,6 +6,8 @@ import lombok.Getter;
 /**
  * 常用语言枚举，与数据库 language_code 保持一致（下划线格式，如 zh_CN）
  * 前端 Accept-Language 统一使用该格式
+ * <p>
+ * 有些是为了时区考虑的
  */
 @Getter
 @AllArgsConstructor
@@ -58,9 +60,13 @@ public enum FmkLanguageEnum implements IEnumStr {
     RU_RU("RU_RU", "俄语（俄罗斯）"),
     ;
 
-    /** 数据库存储 & 前端传递的语言编码 */
+    /**
+     * 数据库存储 & 前端传递的语言编码
+     */
     private final String code;
 
-    /** 中文描述 */
+    /**
+     * 中文描述
+     */
     private final String msg;
 }

@@ -1,4 +1,57 @@
 
+
+# ----------------------------------------------------
+# 国家
+# ----------------------------------------------------
+INSERT INTO fmk_dict (dict_type,
+                      dict_key,
+                      sort_order,
+                      status,
+                      remark,
+                      del_flag,
+                      create_user,
+                      create_date,
+                      update_user,
+                      update_date,
+                      trace_id)
+VALUES
+    ('fmk_country', 'CN', 1, 'NORMAL', 'China', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'US', 2, 'NORMAL', 'United States', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'TW', 3, 'NORMAL', 'Taiwan', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'GB', 4, 'NORMAL', 'United Kingdom', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT');
+
+INSERT INTO fmk_dict_i18n (dict_type,
+                           dict_key,
+                           language_code,
+                           dict_value,
+                           remark,
+                           del_flag,
+                           create_user,
+                           create_date,
+                           update_user,
+                           update_date,
+                           trace_id)
+VALUES
+    ('fmk_country', 'CN', 'ZH_CN', '中国', '中国', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'CN', 'ZH_TW', '中國', '中國', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'CN', 'EN_US', 'China', 'China', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'CN', 'EN_GB', 'China', 'China', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+
+    ('fmk_country', 'US', 'ZH_CN', '美国', '美国', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'US', 'ZH_TW', '美國', '美國', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'US', 'EN_US', 'United States', 'United States', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'US', 'EN_GB', 'United States', 'United States', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+
+    ('fmk_country', 'TW', 'ZH_CN', '台湾', '台湾', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'TW', 'ZH_TW', '台灣', '台灣', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'TW', 'EN_US', 'Taiwan', 'Taiwan', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'TW', 'EN_GB', 'Taiwan', 'Taiwan', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+
+    ('fmk_country', 'GB', 'ZH_CN', '英国', '英国', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'GB', 'ZH_TW', '英國', '英國', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'GB', 'EN_US', 'United Kingdom', 'United Kingdom', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'GB', 'EN_GB', 'United Kingdom', 'United Kingdom', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT');
+
 # ----------------------------------------------------
 # 多语言
 # ----------------------------------------------------
@@ -14,11 +67,11 @@ INSERT INTO fmk_dict (dict_type,
                       update_user,
                       update_date,
                       trace_id)
-VALUES ('fmk_language', 'ZH_CN', 1, 'NORMAL', '', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
-       ('fmk_language', 'ZH_TW', 2, 'NORMAL', '', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
-       ('fmk_language', 'EN_US', 3, 'NORMAL', '', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
-       ('fmk_language', 'EN_GB', 4, 'NORMAL', '', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT')
-;
+VALUES
+    ('fmk_country', 'CN', 1, 'NORMAL', 'China', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'US', 2, 'NORMAL', 'United States', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'TW', 3, 'NORMAL', 'Taiwan', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT'),
+    ('fmk_country', 'GB', 4, 'NORMAL', 'United Kingdom', 'NORMAL', '0', 1762560000000, '0', 1762560000000, 'TRACE_INIT');
 
 
 INSERT INTO fmk_dict_i18n (dict_type,

@@ -1,5 +1,6 @@
 package com.cjlabs.boot.business.dict.reqquery;
 
+import com.cjlabs.domain.enums.FmkLanguageEnum;
 import lombok.Data;
 
 /**
@@ -19,6 +20,11 @@ public class FmkDictI18nReqQuery {
      * 字典键，与主表一致
      */
     private String dictKey;
+
+    /**
+     * 语言代码，例如 ZH_CN, EN_US
+     */
+    private FmkLanguageEnum languageCode;
 
     private Integer orderNumber;
 
