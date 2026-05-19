@@ -93,12 +93,6 @@ public class TypeHandlerConfig implements ApplicationListener<ContextRefreshedEv
 
         sqlSessionFactory.getConfiguration()
                 .getTypeHandlerRegistry()
-                .register(com.cjlabs.core.types.crypto.strings.FmkCurrencyCode.class,
-                        CryptoCurrencyCodeTypeHandler.class);
-        log.info("  ✅ 已注册: crypto.FmkCurrencyCode -> CryptoCurrencyCodeTypeHandler");
-
-        sqlSessionFactory.getConfiguration()
-                .getTypeHandlerRegistry()
                 .register(FmkCountryCode.class, CountryCodeTypeHandler.class);
         log.info("  ✅ 已注册: FmkCountryCode -> CountryCodeTypeHandler");
 
