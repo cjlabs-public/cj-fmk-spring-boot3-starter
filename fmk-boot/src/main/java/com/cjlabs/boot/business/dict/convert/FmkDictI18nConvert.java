@@ -24,7 +24,7 @@ public class FmkDictI18nConvert {
         fmkDictI18nResp.setLanguageCode(input.getLanguageCode());
         fmkDictI18nResp.setDictValue(input.getDictValue());
         fmkDictI18nResp.setRemark(input.getRemark());
-        fmkDictI18nResp.setOrderNumber(input.getOrderNumber());
+        fmkDictI18nResp.setSortOrder(input.getSortOrder());
 
         return fmkDictI18nResp;
     }

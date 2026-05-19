@@ -18,7 +18,7 @@ public class FmkDictI18nReqConvert {
         fmkDictI18n.setDictType(input.getDictType());
         fmkDictI18n.setDictKey(input.getDictKey());
         fmkDictI18n.setLanguageCode(input.getLanguageCode());
-        fmkDictI18n.setOrderNumber(input.getOrderNumber());
+        fmkDictI18n.setSortOrder(input.getSortOrder());
 
         return fmkDictI18n;
     }
@@ -35,7 +35,7 @@ public class FmkDictI18nReqConvert {
         fmkDictI18n.setLanguageCode(input.getLanguageCode());
         fmkDictI18n.setDictValue(input.getDictValue());
         fmkDictI18n.setRemark(input.getRemark());
-        fmkDictI18n.setOrderNumber(input.getOrderNumber());
+        fmkDictI18n.setSortOrder(input.getSortOrder());
 
         return fmkDictI18n;
     }
@@ -51,7 +51,7 @@ public class FmkDictI18nReqConvert {
         fmkDictI18n.setLanguageCode(input.getLanguageCode());
         fmkDictI18n.setDictValue(input.getDictValue());
         fmkDictI18n.setRemark(input.getRemark());
-        fmkDictI18n.setOrderNumber(input.getOrderNumber());
+        fmkDictI18n.setSortOrder(input.getSortOrder());
 
         return fmkDictI18n;
     }

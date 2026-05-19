@@ -75,7 +75,7 @@ public class FmkLanguageService {
         return fmkDictI18nService.listByDictTypeAndLanguageCode(input);
     }
 
-    public Map<FmkLanguageEnum, FmkDictI18nResp> listAllI18nReturnMap(FmkLanguageEnum languageCode) {
+    public Map<String, FmkDictI18nResp> listAllI18nReturnMap(FmkLanguageEnum languageCode) {
         List<FmkDictResp> dictRespList = listAll();
         if (FmkCollectionUtil.isEmpty(dictRespList)) {
             return FmkMapUtil.newHashMap();
@@ -87,7 +87,7 @@ public class FmkLanguageService {
         return dictI18nRespList
                 .stream()
                 .collect(Collectors.toMap(
-                        FmkDictI18nResp::getLanguageCode,
+                        FmkDictI18nResp::getDictKey,
                         c -> c,
                         (existing, replacement) -> existing
                 ));

@@ -1,8 +1,8 @@
 package com.cjlabs.boot.business.dict.mysql;
 
 import com.cjlabs.db.domain.FmkBaseEntity;
-
 import com.cjlabs.domain.enums.FmkLanguageEnum;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -39,10 +39,8 @@ public class FmkDictI18n extends FmkBaseEntity {
      */
     private String dictValue;
 
-    /**
-     * 排序号
-     */
-    private Integer orderNumber;
+
+    private Integer sortOrder;
 
     /**
      * 描述信息，可选

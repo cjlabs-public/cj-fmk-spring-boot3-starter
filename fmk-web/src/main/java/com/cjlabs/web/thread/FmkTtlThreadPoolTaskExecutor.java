@@ -1,7 +1,7 @@
 package com.cjlabs.web.thread;
 
-import com.alibaba.ttl.TtlRunnable;
 import com.alibaba.ttl.TtlCallable;
+import com.alibaba.ttl.TtlRunnable;
 import com.cjlabs.core.time.FmkInstantUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -90,22 +90,14 @@ public class FmkTtlThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
      * 提交可获取CompletableFuture结果的任务
      */
     public <T> CompletableFuture<T> submitCompletable(Callable<T> task) {
-        incrementTotalTasks();
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return TtlCallable.get(task).call();
-            } catch (Exception e) {
-                throw new CompletionException(e);
-            }
-        }, this);
+        return FmkCompletableFutureUtil.supplyAsync(task, this);
     }
 
     /**
      * 提交可获取CompletableFuture结果的Runnable任务
      */
     public CompletableFuture<Void> submitCompletable(Runnable task) {
-        incrementTotalTasks();
-        return CompletableFuture.runAsync(TtlRunnable.get(task), this);
+        return FmkCompletableFutureUtil.runAsync(task, this);
     }
 
     @Override

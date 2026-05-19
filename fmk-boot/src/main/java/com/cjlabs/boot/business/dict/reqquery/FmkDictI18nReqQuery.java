@@ -26,6 +26,6 @@ public class FmkDictI18nReqQuery {
      */
     private FmkLanguageEnum languageCode;
 
-    private Integer orderNumber;
+    private Integer sortOrder;
 
 }

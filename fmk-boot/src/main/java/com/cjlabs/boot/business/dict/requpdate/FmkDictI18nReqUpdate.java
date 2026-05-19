@@ -38,7 +38,7 @@ public class FmkDictI18nReqUpdate {
      */
     private String dictValue;
 
-    private Integer orderNumber;
+    private Integer sortOrder;
 
     /**
      * 描述信息，可选

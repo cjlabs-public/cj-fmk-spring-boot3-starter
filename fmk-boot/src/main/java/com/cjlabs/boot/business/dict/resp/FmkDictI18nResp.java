@@ -43,7 +43,7 @@ public class FmkDictI18nResp {
     /**
      * 描述信息，可选
      */
-    private Integer orderNumber;
+    private Integer sortOrder;
 
     /**
      * 描述信息，可选

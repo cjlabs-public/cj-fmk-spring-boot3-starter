@@ -38,7 +38,7 @@ public class FmkDictI18nReqSave {
      */
     private String remark;
 
-    private Integer orderNumber;
+    private Integer sortOrder;
 
     /**
      * 创建用户

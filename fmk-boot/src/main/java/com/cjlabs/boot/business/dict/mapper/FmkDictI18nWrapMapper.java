@@ -73,8 +73,7 @@ public class FmkDictI18nWrapMapper extends FmkService<FmkDictI18nMapper, FmkDict
         if (Objects.nonNull(input.getLanguageCode())) {
             lambdaQuery.eq(FmkDictI18n::getLanguageCode, input.getLanguageCode());
         }
-        lambdaQuery.orderByAsc(FmkDictI18n::getOrderNumber);
-        lambdaQuery.orderByAsc(FmkDictI18n::getId);
+        lambdaQuery.orderByAsc(FmkDictI18n::getSortOrder);
 
         return super.listByCondition(lambdaQuery);
     }
@@ -89,8 +88,8 @@ public class FmkDictI18nWrapMapper extends FmkService<FmkDictI18nMapper, FmkDict
         if (StringUtils.isNotBlank(input.getDictKey())) {
             lambdaQuery.eq(FmkDictI18n::getDictKey, input.getDictKey());
         }
-        lambdaQuery.orderByAsc(FmkDictI18n::getOrderNumber);
-        lambdaQuery.orderByAsc(FmkDictI18n::getId);
+        // lambdaQuery.orderByAsc(FmkDictI18n::getId);
+        lambdaQuery.orderByAsc(FmkDictI18n::getSortOrder);
 
         return super.listByCondition(lambdaQuery);
     }
