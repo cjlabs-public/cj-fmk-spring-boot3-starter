@@ -1,7 +1,7 @@
 // TransactionHashTypeHandler.java
 package com.cjlabs.db.mybatis.type;
 
-import com.cjlabs.core.types.strings.FmkTxHash;
+import com.cjlabs.core.types.crypto.strings.FmkTxHash;
 import com.cjlabs.db.mybatis.handler.StringTypeHandler;
 import org.apache.ibatis.type.MappedTypes;
 

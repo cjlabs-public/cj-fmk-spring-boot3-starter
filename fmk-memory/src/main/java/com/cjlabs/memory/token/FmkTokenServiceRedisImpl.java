@@ -1,7 +1,7 @@
 package com.cjlabs.memory.token;
 
-import com.cjlabs.core.types.longs.FmkUserId;
-import com.cjlabs.core.types.strings.FmkToken;
+import com.cjlabs.core.types.system.longs.FmkUserId;
+import com.cjlabs.core.types.system.strings.FmkToken;
 import com.cjlabs.web.threadlocal.FmkClientInfo;
 import com.cjlabs.web.threadlocal.FmkUserInfo;
 import com.cjlabs.web.token.FmkTokenProperties;

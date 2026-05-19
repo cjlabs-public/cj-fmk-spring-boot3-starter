@@ -1,7 +1,7 @@
 package com.cjlabs.web.threadlocal;
 
 import com.cjlabs.core.time.FmkInstantUtil;
-import com.cjlabs.core.types.strings.FmkTraceId;
+import com.cjlabs.core.types.system.strings.FmkTraceId;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,6 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Optional;
 
 /**
  * 统一响应结果类

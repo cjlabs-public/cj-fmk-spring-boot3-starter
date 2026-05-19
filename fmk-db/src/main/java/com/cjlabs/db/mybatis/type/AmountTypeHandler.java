@@ -1,7 +1,7 @@
 // AmountTypeHandler.java
 package com.cjlabs.db.mybatis.type;
 
-import com.cjlabs.core.types.decimal.FmkAmount;
+import com.cjlabs.core.types.system.decimal.FmkAmount;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;

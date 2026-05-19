@@ -1,7 +1,7 @@
 package com.cjlabs.web.filter;
 
-import com.cjlabs.core.types.strings.FmkSpanId;
-import com.cjlabs.core.types.strings.FmkTraceId;
+import com.cjlabs.core.types.system.strings.FmkSpanId;
+import com.cjlabs.core.types.system.strings.FmkTraceId;
 import com.cjlabs.domain.common.FmkConstant;
 
 import jakarta.servlet.http.HttpServletRequest;

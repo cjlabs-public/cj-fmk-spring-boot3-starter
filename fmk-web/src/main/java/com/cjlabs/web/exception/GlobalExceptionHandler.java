@@ -1,6 +1,6 @@
 package com.cjlabs.web.exception;
 
-import com.cjlabs.core.types.strings.FmkTraceId;
+import com.cjlabs.core.types.system.strings.FmkTraceId;
 import com.cjlabs.domain.exception.BaseException;
 import com.cjlabs.domain.exception.Error200Exception;
 import com.cjlabs.domain.exception.Error400Exception;

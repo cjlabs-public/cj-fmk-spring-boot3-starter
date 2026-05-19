@@ -1,7 +1,7 @@
 // WalletAddressTypeHandler.java
 package com.cjlabs.db.mybatis.type;
 
-import com.cjlabs.core.types.strings.FmkWalletAddress;
+import com.cjlabs.core.types.crypto.strings.FmkWalletAddress;
 import com.cjlabs.db.mybatis.handler.StringTypeHandler;
 import org.apache.ibatis.type.MappedTypes;
 

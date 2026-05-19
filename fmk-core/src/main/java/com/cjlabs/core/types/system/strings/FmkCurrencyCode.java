@@ -1,4 +1,4 @@
-package com.cjlabs.core.types.strings;
+package com.cjlabs.core.types.system.strings;
 
 import com.cjlabs.core.types.base.BaseStringType;
 
@@ -7,33 +7,33 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 货币代码类型安全包装类
  */
-public class FmkCountryCode extends BaseStringType<FmkCountryCode> {
+public class FmkCurrencyCode extends BaseStringType<FmkCurrencyCode> {
 
     /**
      * 从字符串创建CurrencyCode，支持null值
      */
-    public static FmkCountryCode ofNullable(String value) {
-        return ofNullable(value, FmkCountryCode::new);
+    public static FmkCurrencyCode ofNullable(String value) {
+        return ofNullable(value, FmkCurrencyCode::new);
     }
 
     /**
      * 从Object值创建CurrencyCode，支持JSON反序列化
      */
-    public static FmkCountryCode ofNullable(Object value) {
-        return ofNullableObject(value, FmkCountryCode::new, String.class);
+    public static FmkCurrencyCode ofNullable(Object value) {
+        return ofNullableObject(value, FmkCurrencyCode::new, String.class);
     }
 
     /**
      * 从字符串创建CurrencyCode，不允许null或空值
      */
-    public static FmkCountryCode of(String value) {
+    public static FmkCurrencyCode of(String value) {
         if (StringUtils.isBlank(value)) {
             throw new IllegalArgumentException("CurrencyCode cannot be null or empty");
         }
-        return new FmkCountryCode(value.trim().toUpperCase());
+        return new FmkCurrencyCode(value.trim().toUpperCase());
     }
 
-    public FmkCountryCode(String value) {
+    public FmkCurrencyCode(String value) {
         super(value);
         if (StringUtils.isBlank(value)) {
             throw new IllegalArgumentException("CurrencyCode cannot be null or empty");
@@ -43,8 +43,8 @@ public class FmkCountryCode extends BaseStringType<FmkCountryCode> {
     }
 
     @Override
-    protected FmkCountryCode newInstance(String value) {
-        return new FmkCountryCode(value);
+    protected FmkCurrencyCode newInstance(String value) {
+        return new FmkCurrencyCode(value);
     }
 
 }

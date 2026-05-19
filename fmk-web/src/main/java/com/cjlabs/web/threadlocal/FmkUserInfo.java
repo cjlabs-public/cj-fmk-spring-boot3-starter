@@ -1,6 +1,6 @@
 package com.cjlabs.web.threadlocal;
 
-import com.cjlabs.core.types.longs.FmkUserId;
+import com.cjlabs.core.types.system.longs.FmkUserId;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

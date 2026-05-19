@@ -1,6 +1,6 @@
 package com.cjlabs.boot.job.xxljob;
 
-import com.cjlabs.core.types.strings.FmkTraceId;
+import com.cjlabs.core.types.system.strings.FmkTraceId;
 import lombok.Getter;
 
 /**

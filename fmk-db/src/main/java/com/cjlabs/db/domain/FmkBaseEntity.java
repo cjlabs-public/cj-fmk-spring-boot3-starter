@@ -1,6 +1,6 @@
 package com.cjlabs.db.domain;
 
-import com.cjlabs.core.types.strings.FmkTraceId;
+import com.cjlabs.core.types.system.strings.FmkTraceId;
 import com.cjlabs.domain.enums.NormalEnum;
 
 import com.baomidou.mybatisplus.annotation.IdType;

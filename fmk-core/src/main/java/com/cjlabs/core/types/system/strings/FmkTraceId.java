@@ -1,4 +1,4 @@
-package com.cjlabs.core.types.strings;
+package com.cjlabs.core.types.system.strings;
 
 import com.cjlabs.core.id.FmkSnowflakeIdGenerator;
 import com.cjlabs.core.types.base.BaseStringType;

@@ -1,4 +1,4 @@
-package com.cjlabs.core.types.decimal;
+package com.cjlabs.core.types.system.decimal;
 
 import com.cjlabs.core.types.base.BaseType;
 

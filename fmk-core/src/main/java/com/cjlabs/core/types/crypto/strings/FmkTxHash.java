@@ -1,4 +1,4 @@
-package com.cjlabs.core.types.strings;
+package com.cjlabs.core.types.crypto.strings;
 
 import com.cjlabs.core.types.base.BaseStringType;
 

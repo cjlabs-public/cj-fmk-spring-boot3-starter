@@ -1,6 +1,6 @@
 package com.cjlabs.db.mybatis.type;
 
-import com.cjlabs.core.types.strings.FmkTraceId;
+import com.cjlabs.core.types.system.strings.FmkTraceId;
 import com.cjlabs.db.mybatis.handler.StringTypeHandler;
 
 import org.apache.ibatis.type.MappedTypes;

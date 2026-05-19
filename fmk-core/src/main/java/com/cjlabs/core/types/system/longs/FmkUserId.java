@@ -1,4 +1,4 @@
-package com.cjlabs.core.types.longs;
+package com.cjlabs.core.types.system.longs;
 
 
 import com.cjlabs.core.types.base.BaseLongType;

@@ -1,6 +1,5 @@
 package com.cjlabs.boot.business.dict.resp;
 
-import com.cjlabs.core.types.strings.FmkTraceId;
 import com.cjlabs.domain.enums.NormalEnum;
 import lombok.Data;
 

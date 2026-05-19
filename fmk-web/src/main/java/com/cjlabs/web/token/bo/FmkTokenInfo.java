@@ -1,10 +1,8 @@
 package com.cjlabs.web.token.bo;
 
-import com.cjlabs.core.types.longs.FmkUserId;
-import com.cjlabs.core.types.strings.FmkToken;
-import com.cjlabs.domain.enums.ClientTypeEnum;
+import com.cjlabs.core.types.system.longs.FmkUserId;
+import com.cjlabs.core.types.system.strings.FmkToken;
 import com.cjlabs.web.threadlocal.FmkClientInfo;
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;

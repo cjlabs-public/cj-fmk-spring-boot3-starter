@@ -1,4 +1,4 @@
-package com.cjlabs.core.types.strings;
+package com.cjlabs.core.types.crypto.strings;
 
 import com.cjlabs.core.id.FmkSnowflakeIdGenerator;
 import com.cjlabs.core.types.base.BaseStringType;
@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
  * 令牌类型安全包装类
  * 提供系统中身份验证和授权的令牌管理
  */
-public class FmkToken extends BaseStringType<FmkToken> {
+public class FmkTokenAddress extends BaseStringType<FmkTokenAddress> {
 
-    private static final String TOKEN_PREFIX = "TOKEN_";
+    private static final String TOKEN_PREFIX = "TOKEN_ADDRESS_";
 
     // Token 格式正则表达式
     private static final Pattern TOKEN_PATTERN = Pattern.compile(
@@ -25,50 +25,50 @@ public class FmkToken extends BaseStringType<FmkToken> {
     /**
      * 从字符串创建Token，支持null值
      */
-    public static FmkToken ofNullable(String value) {
-        return ofNullable(value, FmkToken::new);
+    public static FmkTokenAddress ofNullable(String value) {
+        return ofNullable(value, FmkTokenAddress::new);
     }
 
     /**
      * 从Object值创建Token，支持JSON反序列化
      */
-    public static FmkToken ofNullable(Object value) {
-        return ofNullableObject(value, FmkToken::new, String.class);
+    public static FmkTokenAddress ofNullable(Object value) {
+        return ofNullableObject(value, FmkTokenAddress::new, String.class);
     }
 
     /**
      * 从字符串创建Token，不允许null或空值
      */
-    public static FmkToken of(String value) {
+    public static FmkTokenAddress of(String value) {
         if (StringUtils.isBlank(value)) {
             throw new IllegalArgumentException("Token cannot be null or empty");
         }
-        return new FmkToken(value.trim());
+        return new FmkTokenAddress(value.trim());
     }
 
     /**
      * 生成一个新的基本Token
      */
-    public static FmkToken generate() {
-        return new FmkToken(TOKEN_PREFIX + FmkSnowflakeIdGenerator.nextId());
+    public static FmkTokenAddress generate() {
+        return new FmkTokenAddress(TOKEN_PREFIX + FmkSnowflakeIdGenerator.nextId());
     }
 
 
     /**
      * 生成一个自定义Token
      */
-    public static FmkToken generateCustomPrefix(String prefix) {
+    public static FmkTokenAddress generateCustomPrefix(String prefix) {
         if (StringUtils.isBlank(prefix)) {
             throw new IllegalArgumentException("Suffix cannot be null or empty");
         }
         String randomPart = FmkSnowflakeIdGenerator.nextIdStr();
-        return new FmkToken(prefix + randomPart);
+        return new FmkTokenAddress(prefix + randomPart);
     }
 
 
     // ==================== 构造方法 ====================
 
-    public FmkToken(String value) {
+    public FmkTokenAddress(String value) {
         super(value);
         if (StringUtils.isBlank(value)) {
             throw new IllegalArgumentException("Token cannot be null or empty");
@@ -79,8 +79,8 @@ public class FmkToken extends BaseStringType<FmkToken> {
     }
 
     @Override
-    protected FmkToken newInstance(String value) {
-        return new FmkToken(value);
+    protected FmkTokenAddress newInstance(String value) {
+        return new FmkTokenAddress(value);
     }
 
     // ==================== Token 类型判断 ====================

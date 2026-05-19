@@ -1,6 +1,6 @@
 package com.cjlabs.web.check;
 
-import com.cjlabs.core.types.longs.FmkUserId;
+import com.cjlabs.core.types.system.longs.FmkUserId;
 import com.cjlabs.domain.exception.Error200Exception;
 import com.cjlabs.domain.exception.Error200ExceptionEnum;
 import com.cjlabs.domain.exception.Error500Exception;

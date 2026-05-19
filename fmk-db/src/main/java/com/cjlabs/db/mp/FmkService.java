@@ -2,8 +2,8 @@ package com.cjlabs.db.mp;
 
 import com.cjlabs.core.collection.FmkCollectionUtil;
 import com.cjlabs.core.time.FmkInstantUtil;
-import com.cjlabs.core.types.longs.FmkUserId;
-import com.cjlabs.core.types.strings.FmkTraceId;
+import com.cjlabs.core.types.system.longs.FmkUserId;
+import com.cjlabs.core.types.system.strings.FmkTraceId;
 import com.cjlabs.db.datasource.FmkTransactionTemplateUtil;
 import com.cjlabs.db.domain.FmkBaseEntity;
 import com.cjlabs.db.domain.FmkOrderItem;

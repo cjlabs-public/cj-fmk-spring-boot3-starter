@@ -1,8 +1,8 @@
 package com.cjlabs.web.requestinterceptor;
 
-import com.cjlabs.core.types.longs.FmkUserId;
-import com.cjlabs.core.types.strings.FmkToken;
-import com.cjlabs.core.types.strings.FmkTraceId;
+import com.cjlabs.core.types.system.longs.FmkUserId;
+import com.cjlabs.core.types.system.strings.FmkToken;
+import com.cjlabs.core.types.system.strings.FmkTraceId;
 import com.cjlabs.domain.enums.ClientTypeEnum;
 import com.cjlabs.domain.enums.FmkLanguageEnum;
 import com.cjlabs.domain.enums.IEnumStr;

@@ -1,6 +1,6 @@
 package com.cjlabs.db.mybatis.type;
 
-import com.cjlabs.core.types.longs.FmkUserId;
+import com.cjlabs.core.types.system.longs.FmkUserId;
 import com.cjlabs.db.mybatis.handler.LongTypeHandler;
 import org.apache.ibatis.type.MappedTypes;
 
