@@ -1,4 +1,4 @@
-package com.cjlabs.boot.business.other.service;
+package com.cjlabs.boot.business.dictbusiness.service;
 
 import com.cjlabs.boot.business.dict.reqquery.FmkDictI18nReqQuery;
 import com.cjlabs.boot.business.dict.reqquery.FmkDictReqQuery;
@@ -18,9 +18,9 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class FmkCryptoCurrencyService {
+public class FmkTimezoneService {
 
-    public static final String DICT_TYPE = "fmk_crypto_currency";
+    public static final String DICT_TYPE = "fmk_timezone";
 
     @Autowired
     private FmkDictService fmkDictService;

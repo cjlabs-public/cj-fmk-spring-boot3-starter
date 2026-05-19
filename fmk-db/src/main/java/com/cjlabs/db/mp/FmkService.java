@@ -1,5 +1,6 @@
 package com.cjlabs.db.mp;
 
+import com.cjlabs.core.collection.FmkCollectionUtil;
 import com.cjlabs.core.time.FmkInstantUtil;
 import com.cjlabs.core.types.longs.FmkUserId;
 import com.cjlabs.core.types.strings.FmkTraceId;
@@ -9,6 +10,7 @@ import com.cjlabs.db.domain.FmkOrderItem;
 import com.cjlabs.db.enums.BatchOperationTypeEnum;
 import com.cjlabs.db.enums.DbAggregateEnum;
 import com.cjlabs.db.enums.DbFieldNameEnum;
+import com.cjlabs.db.util.IPageUtil;
 import com.cjlabs.domain.enums.NormalEnum;
 import com.cjlabs.web.json.FmkJacksonUtil;
 import com.cjlabs.web.threadlocal.FmkContextUtil;
@@ -313,9 +315,10 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
         wrapper.in(T::getId, idList)
                 .eq(T::getDelFlag, NormalEnum.NORMAL);
 
-        List<T> result = this.baseMapper.selectList(wrapper);
-        log.debug("Batch query completed: requested={}, found={}", idList.size(), result.size());
-        return result;
+        List<T> resultList = this.baseMapper.selectList(wrapper);
+        log.debug("Batch query completed: requested={}, found={}", idList.size(), resultList.size());
+
+        return FmkCollectionUtil.emptyIfNullReturnNewList(resultList);
     }
 
     /**
@@ -327,9 +330,9 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
             return new ArrayList<>();
         }
 
-        List<T> result = this.baseMapper.selectBatchIds(idList);
-        log.debug("Batch query completed: requested={}, found={}", idList.size(), result.size());
-        return result;
+        List<T> resultList = this.baseMapper.selectBatchIds(idList);
+        log.debug("Batch query completed: requested={}, found={}", idList.size(), resultList.size());
+        return FmkCollectionUtil.emptyIfNullReturnNewList(resultList);
     }
 
     /**
@@ -348,9 +351,9 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
                 .orderByDesc(T::getCreateDate)
                 .last("LIMIT " + Math.min(limit, DEFAULT_QUERY_LIMIT));
 
-        List<T> result = this.baseMapper.selectList(wrapper);
-        log.debug("listAllLimitService completed: limit={}, actual={}", limit, result.size());
-        return result;
+        List<T> resultList = this.baseMapper.selectList(wrapper);
+        log.debug("listAllLimitService completed: limit={}, actual={}", limit, resultList.size());
+        return FmkCollectionUtil.emptyIfNullReturnNewList(resultList);
     }
 
     // ==================== 核心批量事务执行方法 ====================
@@ -485,7 +488,8 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
      */
     public List<T> listByCondition(Wrapper<T> queryWrapper) {
         Wrapper<T> finalWrapper = addDeletedFilter(queryWrapper);
-        return this.baseMapper.selectList(finalWrapper);
+        List<T> resultList = this.baseMapper.selectList(finalWrapper);
+        return FmkCollectionUtil.emptyIfNullReturnNewList(resultList);
     }
 
     /**
@@ -493,7 +497,8 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
      */
     public IPage<T> pageByCondition(IPage<T> page, Wrapper<T> queryWrapper) {
         Wrapper<T> finalWrapper = addDeletedFilter(queryWrapper);
-        return this.baseMapper.selectPage(page, finalWrapper);
+        IPage<T> iPage = this.baseMapper.selectPage(page, finalWrapper);
+        return IPageUtil.emptyIfNullReturnNewList(iPage);
     }
 
     /**
@@ -507,7 +512,8 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
             addOrderBy(finalWrapper, orderItemList, Maps.newHashMap());
         }
 
-        return this.baseMapper.selectPage(page, finalWrapper);
+        IPage<T> iPage = this.baseMapper.selectPage(page, finalWrapper);
+        return IPageUtil.emptyIfNullReturnNewList(iPage);
     }
 
     /**
@@ -550,14 +556,16 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
      * 条件查询 - 列表结果（包含已删除数据）
      */
     public List<T> listByConditionIncludeDeleted(Wrapper<T> queryWrapper) {
-        return this.baseMapper.selectList(queryWrapper);
+        List<T> resultList = this.baseMapper.selectList(queryWrapper);
+        return FmkCollectionUtil.emptyIfNullReturnNewList(resultList);
     }
 
     /**
      * 条件查询 - 分页结果（包含已删除数据）
      */
     public IPage<T> pageByConditionIncludeDeleted(IPage<T> page, Wrapper<T> queryWrapper) {
-        return this.baseMapper.selectPage(page, queryWrapper);
+        IPage<T> iPage = this.baseMapper.selectPage(page, queryWrapper);
+        return IPageUtil.emptyIfNullReturnNewList(iPage);
     }
 
     /**
@@ -619,7 +627,8 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
         // 由于字段名是动态的，这里仍需使用apply方法
         fieldMap.forEach((key, value) -> wrapper.apply(key + " = {0}", value));
         wrapper.eq(T::getDelFlag, NormalEnum.NORMAL);
-        return this.baseMapper.selectList(wrapper);
+        List<T> resultList = this.baseMapper.selectList(wrapper);
+        return FmkCollectionUtil.emptyIfNullReturnNewList(resultList);
     }
 
     // ==================== 统计相关方法 ====================
@@ -643,7 +652,9 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
 
         List<Map<String, Object>> results = this.baseMapper.selectMaps(wrapper);
 
-        return results.stream()
+        List<Map<String, Object>> newList = FmkCollectionUtil.emptyIfNullReturnNewList(results);
+
+        return newList.stream()
                 .collect(Collectors.toMap(
                         map -> String.valueOf(map.get(groupByField)),
                         map -> Integer.valueOf(map.get(DbAggregateEnum.COUNT_VALUE.getCode()).toString()),
@@ -670,9 +681,11 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
                 .select(groupByField + ", COALESCE(SUM(" + sumField + "), 0) as sum_value");
 
         try {
-            List<Map<String, Object>> results = this.baseMapper.selectMaps(wrapper);
+            List<Map<String, Object>> resultList = this.baseMapper.selectMaps(wrapper);
 
-            return results.stream()
+            List<Map<String, Object>> newList = FmkCollectionUtil.emptyIfNullReturnNewList(resultList);
+
+            return newList.stream()
                     .collect(Collectors.toMap(
                             map -> String.valueOf(map.get(groupByField)),
                             map -> new BigDecimal(map.get(DbAggregateEnum.SUM_VALUE.getCode()).toString()),
@@ -696,9 +709,11 @@ public abstract class FmkService<M extends BaseMapper<T>, T extends FmkBaseEntit
                     .groupBy(groupByField)
                     .select(groupByField + ", COALESCE(SUM(" + sumField + "), 0) as sum_value");
 
-            List<Map<String, Object>> results = this.baseMapper.selectMaps(wrapper);
+            List<Map<String, Object>> resultList = this.baseMapper.selectMaps(wrapper);
 
-            return results.stream()
+            List<Map<String, Object>> newList = FmkCollectionUtil.emptyIfNullReturnNewList(resultList);
+
+            return newList.stream()
                     .collect(Collectors.toMap(
                             map -> String.valueOf(map.get(groupByField)),
                             map -> new BigDecimal(map.get(DbAggregateEnum.SUM_VALUE.getCode()).toString()),

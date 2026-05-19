@@ -51,6 +51,18 @@ public class FmkMapUtil {
     }
 
     /**
+     * 如果Map为null，则返回空Map，否则返回原Map
+     *
+     * @param <K> Map键的类型
+     * @param <V> Map值的类型
+     * @param map 要检查的Map
+     * @return 原Map或空Map（如果原Map为null）
+     */
+    public static <K, V> Map<K, V> emptyIfNullReturnNewHashMap(Map<K, V> map) {
+        return map == null ? Maps.newHashMap() : map;
+    }
+
+    /**
      * 创建一个不可变Map
      *
      * @param <K>   Map键的类型

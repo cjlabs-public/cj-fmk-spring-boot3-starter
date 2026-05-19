@@ -58,6 +58,17 @@ public class FmkCollectionUtil {
     }
 
     /**
+     * 如果输入为null，则返回空的不可变列表，否则返回输入列表。
+     *
+     * @param <T>  列表中元素的类型
+     * @param list 要检查的列表
+     * @return 输入列表或空的不可变列表（如果输入为null）
+     */
+    public static <T> List<T> emptyIfNullReturnNewList(List<T> list) {
+        return list == null ? Lists.newArrayList() : list;
+    }
+
+    /**
      * 从给定元素创建不可变列表。
      *
      * @param <T>      列表中元素的类型
