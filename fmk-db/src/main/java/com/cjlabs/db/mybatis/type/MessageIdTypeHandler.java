@@ -1,16 +1,16 @@
 package com.cjlabs.db.mybatis.type;
 
-import com.cjlabs.core.types.tg.longs.FmkMessageId;
+import com.cjlabs.core.types.tg.longs.FmkTgMessageId;
 import com.cjlabs.db.mybatis.handler.LongTypeHandler;
 import org.apache.ibatis.type.MappedTypes;
 
 /**
  * MessageId类型处理器
  */
-@MappedTypes(FmkMessageId.class)
-public class MessageIdTypeHandler extends LongTypeHandler<FmkMessageId> {
+@MappedTypes(FmkTgMessageId.class)
+public class MessageIdTypeHandler extends LongTypeHandler<FmkTgMessageId> {
 
     public MessageIdTypeHandler() {
-        super(FmkMessageId::of);
+        super(FmkTgMessageId::of);
     }
 }

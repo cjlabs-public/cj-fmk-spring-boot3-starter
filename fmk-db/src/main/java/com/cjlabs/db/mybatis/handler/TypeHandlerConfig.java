@@ -14,9 +14,9 @@ import com.cjlabs.core.types.system.strings.FmkTimezone;
 import com.cjlabs.core.types.system.strings.FmkToken;
 import com.cjlabs.core.types.system.strings.FmkTraceId;
 import com.cjlabs.core.types.system.strings.FmkUsername;
-import com.cjlabs.core.types.tg.longs.FmkAccountId;
-import com.cjlabs.core.types.tg.longs.FmkChatId;
-import com.cjlabs.core.types.tg.longs.FmkMessageId;
+import com.cjlabs.core.types.tg.longs.FmkTgAccountId;
+import com.cjlabs.core.types.tg.longs.FmkTgChatId;
+import com.cjlabs.core.types.tg.longs.FmkTgMessageId;
 import com.cjlabs.db.mybatis.type.*;
 
 import lombok.extern.slf4j.Slf4j;
@@ -140,17 +140,17 @@ public class TypeHandlerConfig implements ApplicationListener<ContextRefreshedEv
 
         sqlSessionFactory.getConfiguration()
                 .getTypeHandlerRegistry()
-                .register(FmkAccountId.class, AccountIdTypeHandler.class);
+                .register(FmkTgAccountId.class, AccountIdTypeHandler.class);
         log.info("  ✅ 已注册: FmkAccountId -> AccountIdTypeHandler");
 
         sqlSessionFactory.getConfiguration()
                 .getTypeHandlerRegistry()
-                .register(FmkChatId.class, ChatIdTypeHandler.class);
+                .register(FmkTgChatId.class, ChatIdTypeHandler.class);
         log.info("  ✅ 已注册: FmkChatId -> ChatIdTypeHandler");
 
         sqlSessionFactory.getConfiguration()
                 .getTypeHandlerRegistry()
-                .register(FmkMessageId.class, MessageIdTypeHandler.class);
+                .register(FmkTgMessageId.class, MessageIdTypeHandler.class);
         log.info("  ✅ 已注册: FmkMessageId -> MessageIdTypeHandler");
 
         // 注册BigDecimal类型处理器
