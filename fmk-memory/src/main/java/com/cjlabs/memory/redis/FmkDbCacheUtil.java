@@ -216,7 +216,7 @@ public class FmkDbCacheUtil {
         String json = jsonData.toString();
 
         // 使用 FmkJacksonUtil 反序列化
-        T result = FmkJacksonUtil.parseObj(json, clazz);
+        T result = FmkJacksonUtil.toObj(json, clazz);
         if (result == null) {
             log.error("解析数据失败: json={}", json);
         }

@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -223,6 +226,29 @@ class FmkJacksonUtilTest_JsonNode {
     }
 
     @Test
+    @DisplayName("Map should convert to JsonNode")
+    void mapShouldConvertToJsonNode() {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("name", "Test");
+        map.put("age", 30);
+        map.put("roles", List.of("ADMIN", "USER"));
+        map.put("profile", Map.of("active", true));
+        map.put("nullable", null);
+
+        JsonNode node = FmkJacksonUtil.mapToJsonNode(map);
+
+        assertNotNull(node);
+        assertTrue(node.isObject());
+        assertEquals("Test", node.get("name").asText());
+        assertEquals(30, node.get("age").asInt());
+        assertTrue(node.get("roles").isArray());
+        assertEquals("ADMIN", node.get("roles").get(0).asText());
+        assertTrue(node.get("profile").isObject());
+        assertTrue(node.get("profile").get("active").asBoolean());
+        assertFalse(node.has("nullable"));
+    }
+
+    @Test
     @DisplayName("ObjectNode should support remove operations")
     void objectNodeShouldSupportRemoveOperations() {
         ObjectNode node = FmkJacksonUtil.createObjectNode();
@@ -277,7 +303,7 @@ class FmkJacksonUtilTest_JsonNode {
     @DisplayName("JsonNode path traversal should work")
     void jsonNodePathTraversalShouldWork() {
         String json = "{\"user\":{\"profile\":{\"name\":\"Test User\",\"age\":30}}}";
-        JsonNode node = FmkJacksonUtil.parseJsonNode(json);
+        JsonNode node = FmkJacksonUtil.jsonToJsonNode(json);
 
         assertNotNull(node);
 

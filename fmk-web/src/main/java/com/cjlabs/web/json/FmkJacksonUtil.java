@@ -352,7 +352,7 @@ public class FmkJacksonUtil {
     /**
      * JSON字符串转对象
      */
-    public static <T> T parseObj(String json, Class<T> clazz) {
+    public static <T> T toObj(String json, Class<T> clazz) {
         if (Objects.isNull(clazz) || StringUtils.isBlank(json)) {
             log.warn("JacksonUtil|parseObj|参数为空");
             return null;
@@ -368,7 +368,7 @@ public class FmkJacksonUtil {
     /**
      * JSON字符串转对象（使用TypeReference）
      */
-    public static <T> T parseObj(String json, TypeReference<T> typeRef) {
+    public static <T> T toObj(String json, TypeReference<T> typeRef) {
         if (Objects.isNull(typeRef) || StringUtils.isBlank(json)) {
             log.warn("JacksonUtil|parseObj|参数为空");
             return null;
@@ -386,16 +386,16 @@ public class FmkJacksonUtil {
     /**
      * JSON字符串转List
      */
-    public static <T> List<T> parseList(String json, Class<T> clazz) {
-        return parseObj(json, new TypeReference<List<T>>() {
+    public static <T> List<T> toList(String json, Class<T> clazz) {
+        return toObj(json, new TypeReference<List<T>>() {
         });
     }
 
     /**
      * JSON字符串转Map
      */
-    public static Map<String, Object> parseMap(String json) {
-        return parseObj(json, new TypeReference<Map<String, Object>>() {
+    public static Map<String, Object> toMap(String json) {
+        return toObj(json, new TypeReference<Map<String, Object>>() {
         });
     }
 
@@ -405,9 +405,9 @@ public class FmkJacksonUtil {
     /**
      * JSON字符串转Map（指定值类型）
      */
-    public static <T> Map<String, T> parseMap(String json, Class<T> valueType) {
+    public static <T> Map<String, T> toMap(String json, Class<T> valueType) {
         if (Objects.isNull(valueType) || StringUtils.isBlank(json)) {
-            log.warn("JacksonUtil|parseMap|参数为空");
+            log.warn("JacksonUtil|toMap|参数为空");
             return Maps.newHashMap();
         }
         try {
@@ -415,7 +415,7 @@ public class FmkJacksonUtil {
             var mapType = typeFactory.constructMapType(Map.class, String.class, valueType);
             return getMapper().readValue(json, mapType);
         } catch (IOException e) {
-            log.error("JacksonUtil|parseMap|反序列化失败: {}", e.getMessage(), e);
+            log.error("JacksonUtil|toMap|反序列化失败: {}", e.getMessage(), e);
             return Maps.newHashMap();
         }
     }
@@ -449,7 +449,7 @@ public class FmkJacksonUtil {
     /**
      * 字符串转JsonNode
      */
-    public static JsonNode parseJsonNode(String json) {
+    public static JsonNode jsonToJsonNode(String json) {
         if (StringUtils.isBlank(json)) {
             log.warn("JacksonUtil|parseJsonNode|JSON字符串为空");
             return null;
@@ -460,6 +460,17 @@ public class FmkJacksonUtil {
             log.error("JacksonUtil|parseJsonNode|解析失败: {}", e.getMessage(), e);
             return null;
         }
+    }
+
+    /**
+     * Map转JsonNode
+     */
+    public static JsonNode mapToJsonNode(Map<?, ?> map) {
+        if (Objects.isNull(map)) {
+            log.warn("JacksonUtil|mapToJsonNode|Map为null");
+            return null;
+        }
+        return getMapper().valueToTree(map);
     }
 
     /**
@@ -531,13 +542,13 @@ public class FmkJacksonUtil {
             return null;
         }
         String json = toJson(obj);
-        return parseObj(json, clazz);
+        return toObj(json, clazz);
     }
 
     /**
      * 对象转换（通过JSON序列化/反序列化）
      */
-    public static <T> T convertValue(Object obj, Class<T> clazz) {
+    public static <T> T convertObj(Object obj, Class<T> clazz) {
         if (Objects.isNull(obj) || Objects.isNull(clazz)) {
             return null;
         }
@@ -552,7 +563,7 @@ public class FmkJacksonUtil {
     /**
      * 对象转换（使用TypeReference）
      */
-    public static <T> T convertValue(Object obj, TypeReference<T> typeRef) {
+    public static <T> T convertObj(Object obj, TypeReference<T> typeRef) {
         if (Objects.isNull(obj) || Objects.isNull(typeRef)) {
             return null;
         }
