@@ -3,6 +3,8 @@ package com.cjlabs.boot.business.dict.reqquery;
 import com.cjlabs.domain.enums.FmkLanguageEnum;
 import lombok.Data;
 
+import java.util.Collection;
+
 /**
  * fmk_dict_i18n 系统字典多语言表
  * <p>
@@ -27,5 +29,7 @@ public class FmkDictI18nReqQuery {
     private FmkLanguageEnum languageCode;
 
     private Integer sortOrder;
+
+    private Collection<String> dictKeyColl;
 
 }

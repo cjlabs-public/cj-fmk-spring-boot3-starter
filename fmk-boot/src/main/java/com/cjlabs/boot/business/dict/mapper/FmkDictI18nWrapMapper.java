@@ -2,6 +2,8 @@ package com.cjlabs.boot.business.dict.mapper;
 
 import com.cjlabs.boot.business.dict.mysql.FmkDictI18n;
 import com.cjlabs.boot.business.dict.reqquery.FmkDictI18nReqQuery;
+import com.cjlabs.core.collection.FmkCollectionUtil;
+import com.cjlabs.core.strings.FmkStringUtil;
 import com.cjlabs.db.mp.FmkService;
 import com.cjlabs.db.domain.FmkOrderItem;
 import com.cjlabs.db.domain.FmkPageResponse;
@@ -16,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,6 +55,16 @@ public class FmkDictI18nWrapMapper extends FmkService<FmkDictI18nMapper, FmkDict
         // 构建查询条件
         LambdaQueryWrapper<FmkDictI18n> lambdaQuery = buildLambdaQuery();
 
+        if (StringUtils.isNotBlank(request.getDictKey())) {
+            lambdaQuery.eq(FmkDictI18n::getDictKey, request.getDictKey());
+        }
+        if (Objects.nonNull(request.getLanguageCode())) {
+            lambdaQuery.eq(FmkDictI18n::getLanguageCode, request.getLanguageCode());
+        }
+        Collection<String> dictKeyColl = request.getDictKeyColl();
+        if (FmkCollectionUtil.isNotEmpty(dictKeyColl)) {
+            lambdaQuery.in(FmkDictI18n::getDictKey, dictKeyColl);
+        }
 
         List<FmkOrderItem> orderItemList = input.getOrderItemList();
 
@@ -73,6 +86,12 @@ public class FmkDictI18nWrapMapper extends FmkService<FmkDictI18nMapper, FmkDict
         if (Objects.nonNull(input.getLanguageCode())) {
             lambdaQuery.eq(FmkDictI18n::getLanguageCode, input.getLanguageCode());
         }
+
+        Collection<String> dictKeyColl = input.getDictKeyColl();
+        if (FmkCollectionUtil.isNotEmpty(dictKeyColl)) {
+            lambdaQuery.in(FmkDictI18n::getDictKey, dictKeyColl);
+        }
+
         lambdaQuery.orderByAsc(FmkDictI18n::getSortOrder);
 
         return super.listByCondition(lambdaQuery);
@@ -88,7 +107,12 @@ public class FmkDictI18nWrapMapper extends FmkService<FmkDictI18nMapper, FmkDict
         if (StringUtils.isNotBlank(input.getDictKey())) {
             lambdaQuery.eq(FmkDictI18n::getDictKey, input.getDictKey());
         }
-        // lambdaQuery.orderByAsc(FmkDictI18n::getId);
+
+        Collection<String> dictKeyColl = input.getDictKeyColl();
+        if (FmkCollectionUtil.isNotEmpty(dictKeyColl)) {
+            lambdaQuery.in(FmkDictI18n::getDictKey, dictKeyColl);
+        }
+
         lambdaQuery.orderByAsc(FmkDictI18n::getSortOrder);
 
         return super.listByCondition(lambdaQuery);

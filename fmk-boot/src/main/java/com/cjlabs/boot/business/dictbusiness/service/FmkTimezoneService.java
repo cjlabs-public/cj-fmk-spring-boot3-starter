@@ -13,13 +13,17 @@ import com.cjlabs.domain.enums.FmkLanguageEnum;
 import com.cjlabs.domain.enums.NormalEnum;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -56,16 +60,19 @@ public class FmkTimezoneService {
         return FmkCollectionUtil.getFirst(fmkDictRespList);
     }
 
-    public List<FmkDictI18nResp> listAllI18n(FmkLanguageEnum languageCode) {
+    public List<FmkDictI18nResp> listAllI18n(FmkLanguageEnum languageCode, Collection<String> dictKeyColl) {
         if (Objects.isNull(languageCode)) {
             log.info("FmkLanguageService|listAllI18n|languageCode is null");
             return Lists.newArrayList();
+        }
+        if (FmkCollectionUtil.isEmpty(dictKeyColl)) {
+            dictKeyColl = Sets.newHashSet();
         }
 
         FmkDictI18nReqQuery query = new FmkDictI18nReqQuery();
         query.setDictType(DICT_TYPE);
         query.setLanguageCode(languageCode);
-        // query.setStatus(NormalEnum.NORMAL);
+        query.setDictKeyColl(dictKeyColl);
 
         FmkRequest<FmkDictI18nReqQuery> input = new FmkRequest<>();
         input.setRequest(query);
@@ -78,7 +85,14 @@ public class FmkTimezoneService {
         if (FmkCollectionUtil.isEmpty(dictRespList)) {
             return FmkMapUtil.newHashMap();
         }
-        List<FmkDictI18nResp> dictI18nRespList = listAllI18n(languageCode);
+
+        Set<String> statusSet = dictRespList
+                .stream()
+                .filter(fmkDictResp -> NormalEnum.NORMAL.equals(fmkDictResp.getStatus()))
+                .map(FmkDictResp::getDictKey
+                ).collect(Collectors.toSet());
+
+        List<FmkDictI18nResp> dictI18nRespList = listAllI18n(languageCode, statusSet);
         if (FmkCollectionUtil.isEmpty(dictI18nRespList)) {
             return FmkMapUtil.newHashMap();
         }
