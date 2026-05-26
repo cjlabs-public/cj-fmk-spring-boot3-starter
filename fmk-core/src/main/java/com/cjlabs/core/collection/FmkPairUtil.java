@@ -20,7 +20,23 @@ public class FmkPairUtil {
      *
      * @param <L> 左值类型
      * @param <R> 右值类型
-     * @param left 左值
+     * @return 不可变的二元组
+     */
+    public static <L, R> Pair<L, R> empty() {
+        return new ImmutablePair<>(null, null);
+    }
+
+    public static <L, R> Pair<L, R> emptyMutable() {
+        return new MutablePair<>(null, null);
+    }
+
+
+    /**
+     * 创建一个不可变的二元组
+     *
+     * @param <L>   左值类型
+     * @param <R>   右值类型
+     * @param left  左值
      * @param right 右值
      * @return 不可变的二元组
      */
@@ -31,9 +47,9 @@ public class FmkPairUtil {
     /**
      * 创建一个可变的二元组
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
-     * @param left 左值
+     * @param <L>   左值类型
+     * @param <R>   右值类型
+     * @param left  左值
      * @param right 右值
      * @return 可变的二元组
      */
@@ -44,8 +60,8 @@ public class FmkPairUtil {
     /**
      * 从二元组中获取左值
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
+     * @param <L>  左值类型
+     * @param <R>  右值类型
      * @param pair 二元组
      * @return 左值，如果二元组为null则返回null
      */
@@ -56,8 +72,8 @@ public class FmkPairUtil {
     /**
      * 从二元组中获取右值
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
+     * @param <L>  左值类型
+     * @param <R>  右值类型
      * @param pair 二元组
      * @return 右值，如果二元组为null则返回null
      */
@@ -68,8 +84,8 @@ public class FmkPairUtil {
     /**
      * 创建一个新的二元组，交换左值和右值
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
+     * @param <L>  左值类型
+     * @param <R>  右值类型
      * @param pair 原二元组
      * @return 交换左值和右值后的新二元组
      */
@@ -80,8 +96,8 @@ public class FmkPairUtil {
     /**
      * 比较两个二元组是否相等
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
+     * @param <L>   左值类型
+     * @param <R>   右值类型
      * @param pair1 第一个二元组
      * @param pair2 第二个二元组
      * @return 如果两个二元组相等则返回true
@@ -99,9 +115,9 @@ public class FmkPairUtil {
     /**
      * 从可能为null的值创建二元组，如果两个值都为null则返回null
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
-     * @param left 左值
+     * @param <L>   左值类型
+     * @param <R>   右值类型
+     * @param left  左值
      * @param right 右值
      * @return 二元组，如果两个值都为null则返回null
      */
@@ -112,8 +128,8 @@ public class FmkPairUtil {
     /**
      * 将二元组转换为字符串，格式为"(left,right)"
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
+     * @param <L>  左值类型
+     * @param <R>  右值类型
      * @param pair 二元组
      * @return 二元组的字符串表示
      */
@@ -124,8 +140,8 @@ public class FmkPairUtil {
     /**
      * 将Map.Entry转换为二元组
      *
-     * @param <K> 键类型
-     * @param <V> 值类型
+     * @param <K>   键类型
+     * @param <V>   值类型
      * @param entry Map条目
      * @return 包含条目键和值的二元组
      */
@@ -136,8 +152,8 @@ public class FmkPairUtil {
     /**
      * 将二元组转换为Map.Entry
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
+     * @param <L>  左值类型
+     * @param <R>  右值类型
      * @param pair 二元组
      * @return 包含二元组左值作为键和右值作为值的Map.Entry
      */
@@ -165,8 +181,8 @@ public class FmkPairUtil {
     /**
      * 将二元组列表转换为Map
      *
-     * @param <L> 左值类型（Map键类型）
-     * @param <R> 右值类型（Map值类型）
+     * @param <L>   左值类型（Map键类型）
+     * @param <R>   右值类型（Map值类型）
      * @param pairs 二元组列表
      * @return 以二元组左值为键、右值为值的Map
      */
@@ -186,7 +202,7 @@ public class FmkPairUtil {
     /**
      * 创建一个二元组，其中左右元素都是相同类型的相同值
      *
-     * @param <T> 值类型
+     * @param <T>   值类型
      * @param value 左右位置使用的值
      * @return 包含相同值的二元组
      */
@@ -197,10 +213,10 @@ public class FmkPairUtil {
     /**
      * 转换二元组的左值
      *
-     * @param <L> 原左值类型
-     * @param <R> 右值类型
-     * @param <T> 新左值类型
-     * @param pair 原二元组
+     * @param <L>        原左值类型
+     * @param <R>        右值类型
+     * @param <T>        新左值类型
+     * @param pair       原二元组
      * @param leftMapper 左值转换函数
      * @return 转换左值后的新二元组
      */
@@ -214,10 +230,10 @@ public class FmkPairUtil {
     /**
      * 转换二元组的右值
      *
-     * @param <L> 左值类型
-     * @param <R> 原右值类型
-     * @param <T> 新右值类型
-     * @param pair 原二元组
+     * @param <L>         左值类型
+     * @param <R>         原右值类型
+     * @param <T>         新右值类型
+     * @param pair        原二元组
      * @param rightMapper 右值转换函数
      * @return 转换右值后的新二元组
      */
@@ -231,12 +247,12 @@ public class FmkPairUtil {
     /**
      * 同时转换二元组的左值和右值
      *
-     * @param <L> 原左值类型
-     * @param <R> 原右值类型
-     * @param <NL> 新左值类型
-     * @param <NR> 新右值类型
-     * @param pair 原二元组
-     * @param leftMapper 左值转换函数
+     * @param <L>         原左值类型
+     * @param <R>         原右值类型
+     * @param <NL>        新左值类型
+     * @param <NR>        新右值类型
+     * @param pair        原二元组
+     * @param leftMapper  左值转换函数
      * @param rightMapper 右值转换函数
      * @return 转换左值和右值后的新二元组
      */
@@ -256,9 +272,9 @@ public class FmkPairUtil {
     /**
      * 过滤二元组列表
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
-     * @param pairs 二元组列表
+     * @param <L>       左值类型
+     * @param <R>       右值类型
+     * @param pairs     二元组列表
      * @param predicate 过滤条件
      * @return 过滤后的二元组列表
      */
@@ -276,8 +292,8 @@ public class FmkPairUtil {
     /**
      * 将二元组列表转换为左值列表
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
+     * @param <L>   左值类型
+     * @param <R>   右值类型
      * @param pairs 二元组列表
      * @return 左值列表
      */
@@ -293,8 +309,8 @@ public class FmkPairUtil {
     /**
      * 将二元组列表转换为右值列表
      *
-     * @param <L> 左值类型
-     * @param <R> 右值类型
+     * @param <L>   左值类型
+     * @param <R>   右值类型
      * @param pairs 二元组列表
      * @return 右值列表
      */
