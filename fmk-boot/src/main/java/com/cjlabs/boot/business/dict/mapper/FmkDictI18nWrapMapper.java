@@ -92,7 +92,7 @@ public class FmkDictI18nWrapMapper extends FmkService<FmkDictI18nMapper, FmkDict
             lambdaQuery.in(FmkDictI18n::getDictKey, dictKeyColl);
         }
 
-        lambdaQuery.orderByAsc(FmkDictI18n::getSortOrder);
+        // lambdaQuery.orderByAsc(FmkDictI18n::getSortOrder);
 
         return super.listByCondition(lambdaQuery);
     }
@@ -113,7 +113,7 @@ public class FmkDictI18nWrapMapper extends FmkService<FmkDictI18nMapper, FmkDict
             lambdaQuery.in(FmkDictI18n::getDictKey, dictKeyColl);
         }
 
-        lambdaQuery.orderByAsc(FmkDictI18n::getSortOrder);
+        // lambdaQuery.orderByAsc(FmkDictI18n::getSortOrder);
 
         return super.listByCondition(lambdaQuery);
     }

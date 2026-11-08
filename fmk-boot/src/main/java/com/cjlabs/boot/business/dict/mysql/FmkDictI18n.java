@@ -39,9 +39,6 @@ public class FmkDictI18n extends FmkBaseEntity {
      */
     private String dictValue;
 
-
-    private Integer sortOrder;
-
     /**
      * 描述信息，可选
      */

@@ -43,11 +43,6 @@ public class FmkDictI18nResp {
     /**
      * 描述信息，可选
      */
-    private Integer sortOrder;
-
-    /**
-     * 描述信息，可选
-     */
     private String remark;
 
     /**
